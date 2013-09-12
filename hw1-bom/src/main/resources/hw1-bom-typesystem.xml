@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+    <name>typeSystemDescriptor</name>
+    <description/>
+    <version>1.0</version>
+    <vendor/>
+  <types>
+    <typeDescription>
+      <name>uima.DocumentAnnotation</name>
+      <description>This kind of type is to show a instance of document. It stores the token information so it get a token feature.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>element</name>
+          <description>We get the each token in this document after processor annotated the document</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>uima.Token</elementType>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.Question</name>
+      <description>This kind of type is annotating the question in document so that we can get the answer from the document</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.Token</name>
+      <description>This kind of type is the smallest type in the document. The system will annotate each token span in each question and answer (break on whitespace and punctuation).</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.Answer</name>
+      <description>This kind of type is to show a instance of one answer. Also, it answer whether this kind of answer is correct answer or just a wrong answer.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>isCorrect</name>
+          <description>We can know whether this answer is a correct answer or a wrong answer.</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.AnswerScore</name>
+      <description>This kind of type is to give the calculating score of each answer</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>score</name>
+          <description>we get the score of each answer after we run the processor through  annotator.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>answer</name>
+          <description>this feature is to know the answer sentence that we get our answer score.</description>
+          <rangeTypeName>uima.Answer</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.NGram</name>
+      <description>This kind of type is a number of token to form the Ngram type.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>element</name>
+          <description>Each gram is separate by the token in the array. With the length of the array we can get the exact N.</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>uima.Token</elementType>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>uima.BaseAnnotationType</name>
+      <description>This kind of type is a base type in the system. It inherits from the uima.tcas.Annotation type. The other two features this type has are casProcessorId and confidence. The other type will be the sub class of this one.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>casProcessorId</name>
+          <description>this is a string that we can get where the annotator is produced and provide information for annotator.</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>confidence</name>
+          <description>Each annotation need a confidence score, so this will provide confidence score for each annotation.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>annotation</name>
+          <description>this is a base annotation that we can get the begin and end feature, so we can store the begin and end character of each sentence.</description>
+          <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.Evaluation</name>
+      <description>This kind of type is to evaluate the precision of the results</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>precistionN</name>
+          <description>The number of correct answer N.</description>
+          <rangeTypeName>uima.cas.Integer</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>precisionScore</name>
+          <description>the result of measuring performance by Precision@N (how many of the top N are correct).</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>uima.AnswerTopN</name>
+      <description/>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>baseAnnotation</name>
+          <description>This kind of feature is to inherited from the BaseAnnotation to get the feature of casProcessorId and confidence, so we can get the annotation where it is generated.</description>
+          <rangeTypeName>uima.BaseAnnotationType</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>elementAnswer</name>
+          <description>the Array contain the answer score and AnswerScore type contain the Answer sentence information, so we can get the answer and answer score through this array.</description>
+          <rangeTypeName>uima.cas.FSArray</rangeTypeName>
+          <elementType>uima.AnswerScore</elementType>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
